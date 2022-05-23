@@ -25,6 +25,7 @@ namespace Praktikum_Week_13
         DataTable dtTypePlayer = new DataTable();
         DataTable dtNation = new DataTable();
         DataTable dtTeam = new DataTable();
+        DataTable dtNumber = new DataTable();
         int Position = 0;
 
         private void txtBoxPID_TextChanged(object sender, EventArgs e)
@@ -73,7 +74,7 @@ namespace Praktikum_Week_13
         public void comboDataPlayer(int Posisi)
         {
             cBoxNationality.Text = dtNation.Rows[Posisi][0].ToString();
-            cBoxTeam.Text = dtTeam.Rows[Posisi][0].ToString();
+            cBoxTeam.Text = dtTeam.Rows[Posisi][0].ToString();               
         }
 
         private void btnLeftEnd_Click(object sender, EventArgs e)
@@ -139,6 +140,23 @@ namespace Praktikum_Week_13
         private void btnCancel_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void numUpDownTeam_ValueChanged(object sender, EventArgs e)
+        {
+            sqlQuery = $"SELECT * FROM player WHERE team_id='{cBoxTeam.SelectedValue}' and team_number={numUpDownTeam.Value}";
+            sqlCommand = new MySqlCommand(sqlQuery, sqlConnect);
+            sqlAdapter = new MySqlDataAdapter(sqlCommand);
+            sqlAdapter.Fill(dtNumber);
+
+            if (dtNumber.Rows.Count > 0)
+            {
+                lblAvaliable.Text = "Not Available";
+            }
+            else
+            {
+                lblAvaliable.Text = "Available";
+            }
         }
     }
 }

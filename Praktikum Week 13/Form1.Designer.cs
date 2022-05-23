@@ -211,6 +211,7 @@ namespace Praktikum_Week_13
             this.numUpDownTeam.Name = "numUpDownTeam";
             this.numUpDownTeam.Size = new System.Drawing.Size(242, 26);
             this.numUpDownTeam.TabIndex = 18;
+            this.numUpDownTeam.ValueChanged += new System.EventHandler(this.numUpDownTeam_ValueChanged);
             // 
             // lblAvaliable
             // 
